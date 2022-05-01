@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Eat & Run",
-    "slug": "EatAndRun",
+    "name": "Yummy Stroopwafels",
+    "slug": "YummyStroopwafels",
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
