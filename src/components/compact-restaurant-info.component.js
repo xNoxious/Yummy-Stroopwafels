@@ -1,5 +1,4 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { Text } from './text.component';
 import WebView from 'react-native-webview';
@@ -25,8 +24,8 @@ const Item = styled.View`
 
 const isAndroid = Platform.OS === 'android';
 
-export const CompactRestaurantInfo = ({ restaurant }) => {
-    const Image = isAndroid ? CompactWebView : CompactImage;
+export const CompactRestaurantInfo = ({ restaurant, isOnMap }) => {
+    const Image = isAndroid && isOnMap ? CompactWebView : CompactImage;
     return (
         <Item>
             <Image source={{ uri: restaurant.photos[0] }} />
