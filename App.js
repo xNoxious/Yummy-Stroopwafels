@@ -1,6 +1,5 @@
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from './src/infrastructure/theme'
 import { useFonts as useOswald, Oswald_400Regular } from '@expo-google-fonts/oswald';
