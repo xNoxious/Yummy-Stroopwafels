@@ -1,15 +1,13 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SafeArea } from '../../components/safe-area.component';
 import { RestaurantsNavigator } from './restaurants.navigator';
 import { MapScreen } from '../../features/map/screens/map.screen';
-
+import { SettingsNavigator } from './settings.navigator';
+import { RestaurantsContextProvider } from '../../services/restaurants/restaurants.context';
+import { LocationContextProvider } from '../../services/location/location.context';
+import { FavouritesContextProvider } from '../../services/favourites/favourites.context';
 const Tab = createBottomTabNavigator();
-
-const Settings = () => <SafeArea><Text>Settings</Text></SafeArea>;
 
 const screenOptions = ({ route }) => {
     return {
@@ -34,12 +32,17 @@ const screenOptions = ({ route }) => {
 
 export const AppNavigator = () => {
     return (
-        <NavigationContainer>
-            <Tab.Navigator screenOptions={screenOptions}>
-                <Tab.Screen name='Restaurants' component={RestaurantsNavigator} />
-                <Tab.Screen name='Map' component={MapScreen} />
-                <Tab.Screen name='Settings' component={Settings} />
-            </Tab.Navigator>
-        </NavigationContainer>
+
+        <FavouritesContextProvider>
+            <LocationContextProvider>
+                <RestaurantsContextProvider>
+                    <Tab.Navigator screenOptions={screenOptions}>
+                        <Tab.Screen name='Restaurants' component={RestaurantsNavigator} />
+                        <Tab.Screen name='Map' component={MapScreen} />
+                        <Tab.Screen name='Settings' component={SettingsNavigator} />
+                    </Tab.Navigator>
+                </RestaurantsContextProvider>
+            </LocationContextProvider>
+        </FavouritesContextProvider>
     )
 }
