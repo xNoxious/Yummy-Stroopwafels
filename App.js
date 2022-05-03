@@ -5,9 +5,20 @@ import { theme } from './src/infrastructure/theme'
 import { useFonts as useOswald, Oswald_400Regular } from '@expo-google-fonts/oswald';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import { Navigation } from './src/infrastructure/navigation';
-import { RestaurantsContextProvider } from './src/services/restaurants/restaurants.context';
-import { LocationContextProvider } from './src/services/location/location.context';
-import { FavouritesContextProvider } from './src/services/favourites/favourites.context';
+import { initializeApp } from 'firebase/app';
+import { AuthenticationContextProvider } from './src/services/authentication/aunthentication.context';
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBNGe1lDvAG9DQOCV3IBdPEN8yS2UNa5hI",
+  authDomain: "yummystroopwafels.firebaseapp.com",
+  projectId: "yummystroopwafels",
+  storageBucket: "yummystroopwafels.appspot.com",
+  messagingSenderId: "142908077486",
+  appId: "1:142908077486:web:137fe0e2c57c6b2a49843f"
+};
+
+initializeApp(firebaseConfig);
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -25,13 +36,9 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <Navigation />
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
